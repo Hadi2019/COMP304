@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#00FF00"
+    >
+<TextView 
+    android:id="@+id/lblFragment1" 
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:text="This is fragment #1"
+    android:textColor="#000000" 
+    android:textSize="25sp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get Text in Fragment 2"
+        android:id="@+id/btnGetText1" />
+</LinearLayout>

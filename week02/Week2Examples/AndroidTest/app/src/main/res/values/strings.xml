@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="title">Using Intents</string>
+    <string name="app_name">AndroidTest</string>
+    <string name="submit1">Call Browser Chrome</string>
+    <string name="submit2">Call Centennial</string>
+    <string name="submit3">Call DisplayActivity</string>
+
+</resources>
