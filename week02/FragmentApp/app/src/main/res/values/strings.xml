@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">FragmentApp</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="message_one">One</string>
+    <string name="message_two">Two</string>
 </resources>
