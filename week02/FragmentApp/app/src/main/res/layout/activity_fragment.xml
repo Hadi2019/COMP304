@@ -23,14 +23,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="One"
-            android:id="@+id/one"
+            android:id="@+id/btn_one"
+            android:onClick="Fragment_Selection"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Two"
+            android:id="@+id/btn_two"
             android:onClick="Fragment_Selection"/>
     </LinearLayout>
 
     <fragment
-        android:id="@+id/two"
+        android:id="@+id/frg_one"
         android:name="com.leicasimile.comp304.fragmentapp.One"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <fragment
+        android:id="@+id/frg_two"
+        android:name="com.leicasimile.comp304.fragmentapp.Two"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 
 </android.support.LinearLayout>
