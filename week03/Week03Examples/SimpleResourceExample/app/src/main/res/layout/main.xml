@@ -21,6 +21,6 @@
     android:id="@+id/imageView1"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:src="@drawable/red_rect" />
+    android:src="@drawable/projectashe_square" />
 
 </LinearLayout>
