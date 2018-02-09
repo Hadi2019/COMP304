@@ -2,6 +2,7 @@ package com.leicasimile.comp304.angelicacatalan_comp304_pizzaapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -9,5 +10,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.mnuPizzaCanadian:
+                break;
+        }
+        return true;
     }
 }
