@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">$ Generic Pizza $</string>
+    <string name="main_description">Buy our pizza.</string>
+    <string name="main_instructions">Choose a pizza from our menu on the top right!</string>
     <string name="size_small">Small</string>
     <string name="size_medium">Medium</string>
     <string name="size_large">Large</string>
