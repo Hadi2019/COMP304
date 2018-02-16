@@ -141,7 +141,7 @@
             />
 
         <Button
-            android:id="@+id/size_btnOrder"
+            android:id="@+id/customerInfo_btnOrder"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
