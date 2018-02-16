@@ -25,6 +25,9 @@ public class SizeActivity extends AppCompatActivity implements View.OnClickListe
         RadioButton radXl = findViewById(R.id.size_radXl);
         radXl.setText(getResources().getText(R.string.size_xl));
 
+        // Set default size
+        radSmall.setChecked(true);
+
         // Set btnNext colour to orange
         Button btnNext = findViewById(R.id.size_btnNext);
         btnNext.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
