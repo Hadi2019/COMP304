@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">$ Generic Pizza $</string>
+    <string name="size_small">Small</string>
+    <string name="size_medium">Medium</string>
+    <string name="size_large">Large</string>
+    <string name="size_xl">Extra large</string>
 </resources>
