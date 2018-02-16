@@ -7,29 +7,26 @@
     android:orientation="vertical"
     tools:context="com.leicasimile.comp304.angelicacatalan_comp304_pizzaapp.SizeActivity">
     <RadioGroup
+        android:id="@+id/size_radgrpSize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="40dp">
         <RadioButton
             android:id="@+id/size_radSmall"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/size_small" />
+            android:layout_height="match_parent" />
         <RadioButton
             android:id="@+id/size_radMedium"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/size_medium" />
+            android:layout_height="match_parent" />
         <RadioButton
             android:id="@+id/size_radLarge"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/size_large" />
+            android:layout_height="match_parent" />
         <RadioButton
             android:id="@+id/size_radXl"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/size_xl" />
+            android:layout_height="match_parent" />
     </RadioGroup>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
