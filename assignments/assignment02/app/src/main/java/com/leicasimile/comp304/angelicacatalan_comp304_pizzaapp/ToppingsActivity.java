@@ -18,7 +18,7 @@ public class ToppingsActivity extends AppCompatActivity implements View.OnClickL
 
         // Set btnNext colour to orange
         Button btnNext = findViewById(R.id.toppings_btnNext);
-        btnNext.setBackgroundColor(getResources().getColor(R.color.nextButton));
+        btnNext.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
 
         // Set event-handlers
         Button btnBack = findViewById(R.id.toppings_btnBack);

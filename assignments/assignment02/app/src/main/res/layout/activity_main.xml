@@ -9,8 +9,9 @@
     tools:context="com.leicasimile.comp304.angelicacatalan_comp304_pizzaapp.MainActivity">
 
     <ImageView
+        android:id="@+id/main_imgLogo"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="200dp" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

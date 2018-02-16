@@ -12,6 +12,6 @@ public class CustomerInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_customer_info);
 
         Button btnNext = findViewById(R.id.customerInfo_btnOrder);
-        btnNext.setBackgroundColor(getResources().getColor(R.color.nextButton));
+        btnNext.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
     }
 }

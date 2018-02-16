@@ -27,7 +27,7 @@ public class SizeActivity extends AppCompatActivity implements View.OnClickListe
 
         // Set btnNext colour to orange
         Button btnNext = findViewById(R.id.size_btnNext);
-        btnNext.setBackgroundColor(getResources().getColor(R.color.nextButton));
+        btnNext.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
 
         // Set event-handlers
         Button btnBack = findViewById(R.id.size_btnBack);
