@@ -32,6 +32,7 @@ public class SizeActivity extends AppCompatActivity implements View.OnClickListe
         // Set event-handlers
         Button btnBack = findViewById(R.id.size_btnBack);
         btnBack.setOnClickListener(this);
+        btnNext.setOnClickListener(this);
     }
 
     public void onClick(View v) {
