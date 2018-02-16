@@ -59,6 +59,5 @@ public class SizeActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             }
         }
-
     }
 }

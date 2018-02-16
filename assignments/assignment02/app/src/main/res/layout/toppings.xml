@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <CheckBox
+        android:id="@+id/toppings_chkTopping1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/toppings_1" />
+    <CheckBox
+        android:id="@+id/toppings_chkTopping2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/toppings_2" />
+    <CheckBox
+        android:id="@+id/toppings_chkTopping3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/toppings_3" />
+    <CheckBox
+        android:id="@+id/toppings_chkTopping4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/toppings_4" />
+    <CheckBox
+        android:id="@+id/toppings_chkTopping5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/toppings_5" />
+    <CheckBox
+        android:id="@+id/toppings_chkTopping6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/toppings_6" />
+</LinearLayout>
