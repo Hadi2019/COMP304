@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent i = new Intent(this, SizeActivity.class);
-        i.putExtra("type", item.getItemId());
+        i.putExtra("type", item.getTitle());
         startActivity(i);
 
         return true;
