@@ -14,4 +14,8 @@ public class CustomerInfoActivity extends AppCompatActivity {
         Button btnNext = findViewById(R.id.customerInfo_btnOrder);
         btnNext.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
     }
+
+    protected boolean validateForm() {
+        return false;
+    }
 }
