@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Student Profile</string>
+    <string name="student">Bob Bubblebear</string>
+    <string name="program">Bubble Engineering and Technology</string>
+    <string name="duration">3 years</string>
+    <string name="semester">Semester 4</string>
+    <string name="course">Advanced Bubble Concepts</string>
+</resources>
