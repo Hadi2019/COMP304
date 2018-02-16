@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".SizeActivity" />
-        <activity android:name=".ToppingsActivity"></activity>
+        <activity android:name=".ToppingsActivity" />
+        <activity android:name=".CustomerInfoActivity"></activity>
     </application>
 
 </manifest>
