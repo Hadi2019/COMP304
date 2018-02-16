@@ -11,18 +11,22 @@
         android:layout_height="wrap_content"
         android:layout_margin="40dp">
         <RadioButton
+            android:id="@+id/size_radSmall"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/size_small" />
         <RadioButton
+            android:id="@+id/size_radMedium"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/size_medium" />
         <RadioButton
+            android:id="@+id/size_radLarge"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/size_large" />
         <RadioButton
+            android:id="@+id/size_radXl"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/size_xl" />
