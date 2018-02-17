@@ -2,8 +2,10 @@ package com.leicasimile.comp304.angelicacatalan_comp304_pizzaapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 public class CustomerInfoActivity extends AppCompatActivity {
 
@@ -15,7 +17,11 @@ public class CustomerInfoActivity extends AppCompatActivity {
         Button btnNext = findViewById(R.id.customerInfo_btnOrder);
         btnNext.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
 
-
+        // Set spinner values
+        Spinner spnCardType = findViewById(R.id.customerInfo_spnCardType);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.card_types,
+                android.R.layout.simple_spinner_dropdown_item);
+        spnCardType.setAdapter(adapter);
     }
 
     protected boolean validateForm() {
