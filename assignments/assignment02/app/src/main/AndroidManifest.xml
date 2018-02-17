@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".SizeActivity" />
         <activity android:name=".ToppingsActivity" />
-        <activity android:name=".CustomerInfoActivity"></activity>
+        <activity android:name=".CustomerInfoActivity" />
+        <activity android:name=".OrderInfoActivity"></activity>
     </application>
 
 </manifest>
