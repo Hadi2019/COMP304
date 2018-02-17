@@ -9,6 +9,9 @@ import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ToppingsActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
@@ -40,10 +43,25 @@ public class ToppingsActivity extends AppCompatActivity implements View.OnClickL
                 Intent newI = new Intent(this, CustomerInfoActivity.class);
 
                 // Get selected toppings
-                String[] toppings = {};
+                CheckBox[] chklistToppings = {
+                        findViewById(R.id.toppings_chkTopping1),
+                        findViewById(R.id.toppings_chkTopping2),
+                        findViewById(R.id.toppings_chkTopping3),
+                        findViewById(R.id.toppings_chkTopping4),
+                        findViewById(R.id.toppings_chkTopping5),
+                        findViewById(R.id.toppings_chkTopping6)
+                };
+                List<String> toppings = new ArrayList<String>();
+
+                for (CheckBox chk : chklistToppings) {
+                    if (chk.isChecked()) {
+                        toppings.add(chk.getText().toString());
+                    }
+                }
 
                 newI.putExtra("type", currentI.getStringExtra("type"));
                 newI.putExtra("size", currentI.getStringExtra("size"));
+                newI.putExtra("toppings", toppings.toArray());
 
                 // Go to next activity
                 startActivity(newI);

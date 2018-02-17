@@ -18,7 +18,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name: " />
+                android:text="Name: "
+                android:inputType="textPersonName" />
             <EditText
                 android:id="@+id/customerInfo_editName"
                 android:layout_width="match_parent"
@@ -55,7 +56,8 @@
                 android:id="@+id/customerInfo_editPostalCode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:inputType="textPostalAddress" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -64,7 +66,8 @@
                 android:id="@+id/customerInfo_editPhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="2" />
+                android:layout_weight="2"
+                android:inputType="phone" />
         </LinearLayout>
 
         <LinearLayout
@@ -96,7 +99,8 @@
             <EditText
                 android:id="@+id/customerInfo_editCardNo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="number" />
         </LinearLayout>
 
         <LinearLayout
@@ -113,7 +117,9 @@
                 android:id="@+id/customerInfo_editCvv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:inputType="number"
+                android:maxLength="3" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -122,7 +128,8 @@
                 android:id="@+id/customerInfo_editExpiry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:inputType="date" />
         </LinearLayout>
     </LinearLayout>
 
