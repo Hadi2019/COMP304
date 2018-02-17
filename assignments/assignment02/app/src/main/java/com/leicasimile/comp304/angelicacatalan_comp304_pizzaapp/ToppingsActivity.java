@@ -38,7 +38,7 @@ public class ToppingsActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(i);
                 break;
             }
-            case R.id.size_btnNext: {
+            case R.id.toppings_btnNext: {
                 Intent currentI = getIntent();
                 Intent newI = new Intent(this, CustomerInfoActivity.class);
 
