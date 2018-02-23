@@ -23,7 +23,7 @@ public class SettingsActivity extends AppCompatActivity {
                                     int position, long id) {
                 Intent intent;
                 String selectedSetting = (String)lvSettings.getItemAtPosition(position);
-                //
+
                 switch (position)
                 {
                     case 0:

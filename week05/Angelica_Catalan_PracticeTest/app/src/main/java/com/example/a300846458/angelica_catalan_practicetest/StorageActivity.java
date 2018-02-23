@@ -52,7 +52,7 @@ public class StorageActivity extends AppCompatActivity {
         tView.setText("Memory map: " + String.valueOf(percentAv) + "% free");
 
         // Draw occupied space with blue
-        double widthOfOccupiedSpace = (1. - ratio) * width; //(100-(int)(availableSpace*100.))*width/100;
+        double widthOfOccupiedSpace = (1. - ratio) * width;
         canvas.drawRect(0, 0, (int) widthOfOccupiedSpace, height, paint);
 
         // Draw available space with yellow
