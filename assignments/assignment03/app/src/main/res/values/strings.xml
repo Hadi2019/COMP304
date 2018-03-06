@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">AngelicaCatalan_COMP304_Assignment3</string>
     <string name="main_instructions">Select a task to show the solution.</string>
+    <string-array name="tasks">
+        <item>Task 1</item>
+        <item>Task 2</item>
+        <item>Task 3</item>
+    </string-array>
 </resources>
