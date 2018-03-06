@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/mnuPizzaCanadian"
+        android:title="Canadian"
+        android:orderInCategory="1" />
+    <item
+        android:id="@+id/mnuPizzaBbqChicken"
+        android:title="BBQ Chicken"
+        android:orderInCategory="2" />
+    <item
+        android:id="@+id/mnuPizzaSuperHawaiian"
+        android:title="Super Hawaiian"
+        android:orderInCategory="3" />
+    <item
+        android:id="@+id/mnuPizzaVeggieLovers"
+        android:title="Veggie Lover's"
+        android:orderInCategory="4" />
+    <item
+        android:id="@+id/mnuPizzaSmokeyMapleBacon"
+        android:title="Smokey Maple Bacon"
+        android:orderInCategory="5" />
+</menu>

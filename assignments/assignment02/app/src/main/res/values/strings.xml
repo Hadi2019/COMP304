@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">$ Generic Pizza $</string>
+    <string name="main_description">Buy our pizza.</string>
+    <string name="main_instructions">Choose a pizza from our menu on the top right!</string>
+    <string name="size_small">Small</string>
+    <string name="size_medium">Medium</string>
+    <string name="size_large">Large</string>
+    <string name="size_xl">Extra large</string>
+    <string name="toppings_1">Cheese</string>
+    <string name="toppings_2">Green Pepper</string>
+    <string name="toppings_3">Smoked Ham</string>
+    <string name="toppings_4">Spinach</string>
+    <string name="toppings_5">Black Olives</string>
+    <string name="toppings_6">Spanish Onions</string>
+</resources>
