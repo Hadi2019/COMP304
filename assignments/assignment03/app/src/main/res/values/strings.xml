@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">AngelicaCatalan_COMP304_Lab_Assign3</string>
+    <string name="app_name">AngelicaCatalan_COMP304_Assignment3</string>
+    <string name="main_instructions">Select a task to show the solution.</string>
 </resources>
