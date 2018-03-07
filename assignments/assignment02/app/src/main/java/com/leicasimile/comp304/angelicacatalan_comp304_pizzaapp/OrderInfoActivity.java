@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+// Angelica Catalan, 300846458
 public class OrderInfoActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override

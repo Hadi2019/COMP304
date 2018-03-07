@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+// Angelica Catalan, 300846458
 public class ToppingsActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override

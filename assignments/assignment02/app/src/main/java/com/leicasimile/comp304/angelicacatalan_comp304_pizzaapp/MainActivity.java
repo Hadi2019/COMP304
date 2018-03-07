@@ -8,6 +8,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
+// Angelica Catalan, 300846458
 public class MainActivity extends AppCompatActivity {
 
     @Override

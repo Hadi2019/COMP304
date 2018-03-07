@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+// Angelica Catalan, 300846458
 public class SizeActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
