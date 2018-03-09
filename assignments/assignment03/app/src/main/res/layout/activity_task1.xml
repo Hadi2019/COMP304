@@ -48,7 +48,7 @@
                     android:id="@+id/radColourRed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/line_colour_red"/>
+                    android:text="@string/line_colour_red" />
                 <RadioButton
                     android:id="@+id/radColourGreen"
                     android:layout_width="wrap_content"
