@@ -5,6 +5,8 @@
     <string name="task1_textview_colour">Line colour</string>
     <string name="task1_textview_keys">Arrow keys</string>
     <string name="task1_clear">Clear</string>
+    <string name="task1_x">x = </string>
+    <string name="task1_y">y = </string>
     <string-array name="tasks">
         <item>Task 1</item>
         <item>Task 2</item>

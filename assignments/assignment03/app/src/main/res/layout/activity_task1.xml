@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_margin="15dp"
+    android:layout_margin="20dp"
     tools:context="com.leicasimile.comp304.angelicacatalan_comp304_lab_assign3.Task1Activity">
 
     <RelativeLayout
@@ -114,6 +114,41 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:text="@string/task1_clear" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp" >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true" >
+            <TextView
+                android:id="@+id/task1_tvX"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="@string/task1_x" />
+            <TextView
+                android:id="@+id/task1_tvY"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="@string/task1_y" />
+        </LinearLayout>
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp">
+        <ImageView
+            android:id="@+id/task1_imgCanvas"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:minWidth="200dp"
+            android:minHeight="100dp"
+            android:layout_centerHorizontal="true"/>
     </RelativeLayout>
 
 </LinearLayout>
