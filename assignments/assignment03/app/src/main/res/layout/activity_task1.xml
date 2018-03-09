@@ -5,20 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_margin="15dp"
     tools:context="com.leicasimile.comp304.angelicacatalan_comp304_lab_assign3.Task1Activity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="20dp" >
+        android:layout_height="120dp" >
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginHorizontal="10dp"
-            android:layout_weight="1" >
+            android:layout_alignParentLeft="true" >
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -31,11 +30,11 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginHorizontal="10dp"
-            android:layout_weight="1" >
+            android:layout_centerHorizontal="true" >
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -64,41 +63,46 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginHorizontal="10dp"
-            android:layout_weight="1" >
+            android:layout_alignParentRight="true" >
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:text="@string/task1_textview_keys" />
 
-            <ImageView
-                android:id="@+id/imgArrowUp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:id="@+id/imgArrowLeft"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true" />
-                <ImageView
-                    android:id="@+id/imgArrowRight"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true" />
-            </RelativeLayout>
-            <ImageView
-                android:id="@+id/imgArrowDown"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:id="@+id/imgArrowUp"
+                    android:layout_width="50dp"
+                    android:layout_height="35dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true" />
+                <ImageButton
+                    android:id="@+id/imgArrowLeft"
+                    android:layout_width="35dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true" />
+                <ImageButton
+                    android:id="@+id/imgArrowRight"
+                    android:layout_width="35dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true" />
+                <ImageButton
+                    android:id="@+id/imgArrowDown"
+                    android:layout_width="50dp"
+                    android:layout_height="35dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
         </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>
