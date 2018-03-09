@@ -4,6 +4,7 @@
     <string name="task1_textview_thickness">Line thickness</string>
     <string name="task1_textview_colour">Line colour</string>
     <string name="task1_textview_keys">Arrow keys</string>
+    <string name="task1_clear">Clear</string>
     <string-array name="tasks">
         <item>Task 1</item>
         <item>Task 2</item>
