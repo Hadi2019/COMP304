@@ -1,9 +1,15 @@
 <resources>
     <string name="app_name">AngelicaCatalan_COMP304_Assignment3</string>
     <string name="main_instructions">Select a task to show the solution.</string>
+    <string name="task1_textview_thickness">Line thickness</string>
+    <string name="task1_textview_colour">Line colour</string>
+    <string name="task1_textview_keys">Arrow keys</string>
     <string-array name="tasks">
         <item>Task 1</item>
         <item>Task 2</item>
         <item>Task 3</item>
     </string-array>
+    <string name="line_colour_red">Red</string>
+    <string name="line_colour_green">Green</string>
+    <string name="line_colour_yellow">Yellow</string>
 </resources>
