@@ -6,24 +6,30 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.os.Handler;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class Task1Activity extends AppCompatActivity {
+public class Task1Activity extends AppCompatActivity implements View.OnTouchListener {
 
     ImageView imgCanvas;
     TextView tvX;
     TextView tvY;
+
+    final int DRAW_DELAY = 50;  // Delay to draw line in ms
+    Direction currentDirection;
 
     // Coords for the line
     int startX = 10;
@@ -39,11 +45,17 @@ public class Task1Activity extends AppCompatActivity {
     Bitmap bitmap;
     Canvas canvas;
 
+    private Handler mHandler;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task1);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
 
         // Set spinner values
         final Spinner spnLineThickness = findViewById(R.id.task1_spnLineThickness);
@@ -110,29 +122,27 @@ public class Task1Activity extends AppCompatActivity {
             }
         });
 
+        Button btnClear = findViewById(R.id.task1_btnClear);
+        btnClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clearCanvas();
+            }
+        });
+
+        imgArrowUp.setOnTouchListener(this);
+        imgArrowDown.setOnTouchListener(this);
+        imgArrowRight.setOnTouchListener(this);
+        imgArrowLeft.setOnTouchListener(this);
+
         // Set default options
         spnLineThickness.setSelection(0);
         rgrpLineColour.check(R.id.radColourRed);
+        clearCanvas();
     }
 
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        switch(keyCode) {
-            case KeyEvent.KEYCODE_DPAD_DOWN:
-                drawLine(Direction.DOWN,canvas);
-                return true;
-
-            case KeyEvent.KEYCODE_DPAD_UP:
-                drawLine(Direction.UP,canvas);
-                return true;
-
-            case KeyEvent.KEYCODE_DPAD_RIGHT:
-                drawLine(Direction.RIGHT,canvas);
-                return true;
-            case KeyEvent.KEYCODE_DPAD_LEFT:
-                drawLine(Direction.LEFT,canvas);
-                return true;
-        }
-        return false;
+    private void clearCanvas() {
+        canvas.drawColor(Color.BLACK);
     }
 
     private void drawLine(Direction direction, Canvas canvas) {
@@ -162,4 +172,72 @@ public class Task1Activity extends AppCompatActivity {
 
         imgCanvas.invalidate();
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch(keyCode) {
+            case KeyEvent.KEYCODE_DPAD_DOWN:
+                drawLine(Direction.DOWN,canvas);
+                return true;
+
+            case KeyEvent.KEYCODE_DPAD_UP:
+                drawLine(Direction.UP,canvas);
+                return true;
+
+            case KeyEvent.KEYCODE_DPAD_RIGHT:
+                drawLine(Direction.RIGHT,canvas);
+                return true;
+            case KeyEvent.KEYCODE_DPAD_LEFT:
+                drawLine(Direction.LEFT,canvas);
+                return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            switch (v.getId()) {
+                case R.id.imgArrowUp:
+                    currentDirection = Direction.UP;
+                    break;
+                case R.id.imgArrowDown:
+                    currentDirection = Direction.DOWN;
+                    break;
+                case R.id.imgArrowLeft:
+                    currentDirection = Direction.LEFT;
+                    break;
+                case R.id.imgArrowRight:
+                    currentDirection = Direction.RIGHT;
+                    break;
+            }
+            // Continuously call draw action while button is held down.
+            if (mHandler != null) { return true; }
+            mHandler = new Handler();
+            mHandler.postDelayed(mDraw, DRAW_DELAY);
+        } else if (event.getAction() == MotionEvent.ACTION_UP) {
+            if (mHandler == null) return true;
+            mHandler.removeCallbacks(mDraw);
+            mHandler = null;
+        }
+        return false;
+    }
+
+    Runnable mDraw = new Runnable() {
+        @Override
+        public void run() {
+            drawLine(currentDirection, canvas);
+            mHandler.postDelayed(this, DRAW_DELAY);
+        }
+    };
 }
