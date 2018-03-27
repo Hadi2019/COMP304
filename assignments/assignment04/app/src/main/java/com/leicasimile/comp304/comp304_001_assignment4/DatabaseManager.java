@@ -23,8 +23,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
     //initialize database table names and DDL statements
     public void dbInitialize(String[] tables, String tableCreatorString[])
     {
-  	  this.tables = tables;
-  	  this.tableCreatorString = tableCreatorString;
+  	    this.tables = tables;
+  	    this.tableCreatorString = tableCreatorString;
     }
   
     // Create tables 
