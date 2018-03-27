@@ -30,7 +30,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
     // Create tables 
     @Override
     public void onCreate(SQLiteDatabase db) {
-    	for (int i=0; i < tables.length; i++)
+    	for (int i = 0; i < tables.length; i++)
     		db.execSQL("DROP TABLE IF EXISTS " + tables[i]);
 
     	for (int i = 0; i<tables.length; i++)
@@ -60,9 +60,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         onCreate(db); 
     }
 
-    /////////////////////////
-    // Database operations //
-    /////////////////////////
+    // -- Database operations -- //
     void addRecord(ContentValues values, String tableName, String fields[],String record[]) { 
         SQLiteDatabase db = this.getWritableDatabase(); 
   
