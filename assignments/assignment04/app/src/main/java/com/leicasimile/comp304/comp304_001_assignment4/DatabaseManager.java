@@ -19,7 +19,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     public DatabaseManager(Context context) { 
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-    } 
+    }
     //initialize database table names and DDL statements
     public void dbInitialize(String[] tables, String tableCreatorString[])
     {
