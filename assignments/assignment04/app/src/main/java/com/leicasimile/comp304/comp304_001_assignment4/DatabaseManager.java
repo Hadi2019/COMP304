@@ -23,27 +23,25 @@ public class DatabaseManager extends SQLiteOpenHelper {
     //initialize database table names and DDL statements
     public void dbInitialize(String[] tables, String tableCreatorString[])
     {
-  	  this.tables=tables;
-  	  this.tableCreatorString=tableCreatorString;
+  	  this.tables = tables;
+  	  this.tableCreatorString = tableCreatorString;
     }
   
     // Create tables 
     @Override
     public void onCreate(SQLiteDatabase db) {
-    	for (int i=0;i<tables.length;i++)
+    	for (int i=0; i < tables.length; i++)
     		db.execSQL("DROP TABLE IF EXISTS " + tables[i]);
 
-    	for (int i=0;i<tables.length;i++)
+    	for (int i = 0; i<tables.length; i++)
     		db.execSQL(tableCreatorString[i]);
     } 
     //create the database
     public void createDatabase(Context context)
     {
     	SQLiteDatabase mDatabase;
-    	mDatabase = context.openOrCreateDatabase(
-    	    DATABASE_NAME,
-    	    SQLiteDatabase.CREATE_IF_NECESSARY,
-    	    null);
+    	mDatabase = context.openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE,
+                null);
 
     }
 
@@ -55,7 +53,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) { 
         // Drop existing tables
-    	for (int i=0;i<tables.length;i++)
+    	for (int i = 0; i < tables.length; i++)
     		db.execSQL("DROP TABLE IF EXISTS " + tables[i]);
                  
         // Create tables again 
@@ -68,7 +66,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
     void addRecord(ContentValues values, String tableName, String fields[],String record[]) { 
         SQLiteDatabase db = this.getWritableDatabase(); 
   
-        for (int i=1;i<record.length;i++)
+        for (int i = 1; i < record.length; i++)
         	values.put(fields[i], record[i]);
         // Insert the row 
         db.insert(tableName, null, values); 
@@ -105,7 +103,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
     public int updateRecord(ContentValues values, String tableName, String fields[],String record[]) { 
         SQLiteDatabase db = this.getWritableDatabase(); 
   
-        for (int i=1;i<record.length;i++)
+        for (int i = 1; i < record.length; i++)
         	values.put(fields[i], record[i]);
   
         // updating row with given id = record[0]
