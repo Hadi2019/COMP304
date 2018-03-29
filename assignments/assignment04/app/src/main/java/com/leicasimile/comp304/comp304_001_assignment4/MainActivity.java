@@ -15,7 +15,12 @@ public class MainActivity extends AppCompatActivity {
                 "username TEXT, password TEXT," +
                 "firstname TEXT, lastname TEXT);",
         "CREATE TABLE Program (programCode INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "programName TEXT);"
+                "programName TEXT, tuitionFee NUMERIC," +
+                "duration INTEGER, semester INTEGER);",
+        "CREATE TABLE Payment (paymentId INTEGER PRIMARY KEY AUTOINCREMENT" +
+                "studentId INTEGER PRIMARY KEY, programCode INTEGER," +
+                "totalAmount NUMERIC, amountPaid NUMERIC, balance NUMERIC," +
+                "paymentDate INTEGER, status TEXT);"
     };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
