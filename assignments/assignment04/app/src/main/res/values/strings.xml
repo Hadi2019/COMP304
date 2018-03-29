@@ -1,3 +1,22 @@
 <resources>
-    <string name="app_name">COMP304-001_Assignment4</string>
+    <string name="app_name">COMP304-002_Assignment4</string>
+    <string-array name="tables">
+        <item>Student</item>
+        <item>Admin</item>
+        <item>Program</item>
+        <item>Payment</item>
+    </string-array>
+    <string-array name="tableCreator">
+        <item>CREATE TABLE Student (studentId INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT, password TEXT, firstname TEXT, lastname TEXT,
+            address TEXT, city TEXT, postalCode TEXT);</item>
+        <item>CREATE TABLE Admin (employeeId INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT, password TEXT, firstname TEXT, lastname TEXT);</item>
+        <item>CREATE TABLE Program (programCode INTEGER PRIMARY KEY AUTOINCREMENT,
+            programName TEXT, tuitionFee NUMERIC, duration INTEGER, semester INTEGER);</item>
+        <item>CREATE TABLE Payment (paymentId INTEGER PRIMARY KEY AUTOINCREMENT,
+            studentId INTEGER PRIMARY KEY, programCode INTEGER,
+            totalAmount NUMERIC, amountPaid NUMERIC, balance NUMERIC,
+            paymentDate INTEGER, status TEXT);</item>
+    </string-array>
 </resources>

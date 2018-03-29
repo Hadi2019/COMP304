@@ -14,13 +14,14 @@ public class DatabaseManager extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "StudentRecruitment.db";
     private static final int DATABASE_VERSION = 1;
 
-    private String tables[]; //table names
-    private String tableCreatorString[]; //SQL statements to create tables
+    private String tables[];
+    private String tableCreatorString[]; // SQL statements to create tables
 
     public DatabaseManager(Context context) { 
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
-    //initialize database table names and DDL statements
+
+    // Initialize database table names and DDL statements
     public void dbInitialize(String[] tables, String tableCreatorString[])
     {
   	    this.tables = tables;
@@ -33,16 +34,15 @@ public class DatabaseManager extends SQLiteOpenHelper {
     	for (int i = 0; i < tables.length; i++)
     		db.execSQL("DROP TABLE IF EXISTS " + tables[i]);
 
-    	for (int i = 0; i<tables.length; i++)
+    	for (int i = 0; i < tables.length; i++)
     		db.execSQL(tableCreatorString[i]);
     } 
-    //create the database
+
     public void createDatabase(Context context)
     {
     	SQLiteDatabase mDatabase;
     	mDatabase = context.openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE,
                 null);
-
     }
 
     public void deleteDatabase(Context context)
@@ -66,7 +66,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
   
         for (int i = 1; i < record.length; i++)
         	values.put(fields[i], record[i]);
-        // Insert the row 
+
         db.insert(tableName, null, values); 
         db.close();
     }
