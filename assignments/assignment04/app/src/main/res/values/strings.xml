@@ -12,11 +12,21 @@
             address TEXT, city TEXT, postalCode TEXT);</item>
         <item>CREATE TABLE Admin (employeeId INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT, password TEXT, firstname TEXT, lastname TEXT);</item>
-        <item>CREATE TABLE Program (programCode INTEGER PRIMARY KEY AUTOINCREMENT,
+        <item>CREATE TABLE Program (programCode TEXT PRIMARY KEY,
             programName TEXT, tuitionFee NUMERIC, duration INTEGER, semester INTEGER);</item>
         <item>CREATE TABLE Payment (paymentId INTEGER PRIMARY KEY AUTOINCREMENT,
-            studentId INTEGER PRIMARY KEY, programCode INTEGER,
+            studentId INTEGER, programCode TEXT,
             totalAmount NUMERIC, amountPaid NUMERIC, balance NUMERIC,
             paymentDate INTEGER, status TEXT);</item>
+        <item>INSERT INTO Student (username, password, firstname, lastname, address, city, postalCode)
+            VALUES('beep', 'boop', 'Beep', 'Boop', '40 Street St', 'Toronto', 'M5J 2M3');</item>
+        <item>INSERT INTO Admin (username, password, firstname, lastname)
+            VALUES('boop', 'beep', 'Boop', 'Beep');</item>
+        <item>INSERT INTO Program (programCode, programName, tuitionFee, duration, semester)
+            VALUES('3409', 'Software Engineering Technology', 2935.50, 3, 6);</item>
+        <item>INSERT INTO Program (programCode, programName, tuitionFee, duration, semester)
+            VALUES('6409', 'Art and Design Fundamentals', 2935.50, 1, 2);</item>
+        <item>INSERT INTO Program (programCode, programName, tuitionFee, duration, semester)
+            VALUES('6423', 'Animation 3D', 6436.50, 2, 4);</item>
     </string-array>
 </resources>
