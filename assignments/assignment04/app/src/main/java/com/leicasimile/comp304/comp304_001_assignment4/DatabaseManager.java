@@ -34,7 +34,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
     	for (int i = 0; i < tables.length; i++)
     		db.execSQL("DROP TABLE IF EXISTS " + tables[i]);
 
-    	for (int i = 0; i < tables.length; i++)
+    	for (int i = 0; i < tableCreatorString.length; i++)
     		db.execSQL(tableCreatorString[i]);
     } 
 

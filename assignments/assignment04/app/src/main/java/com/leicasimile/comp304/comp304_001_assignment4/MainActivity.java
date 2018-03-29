@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final DatabaseManager db = new DatabaseManager(this);
-        db.createDatabase(getApplicationContext());
         db.dbInitialize(tables, tableCreatorString);
+        db.createDatabase(getApplicationContext());
     }
 }
