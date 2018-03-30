@@ -38,6 +38,7 @@
     </LinearLayout>
 
     <RadioGroup
+        android:id="@+id/main_rgrpUserType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RadioButton

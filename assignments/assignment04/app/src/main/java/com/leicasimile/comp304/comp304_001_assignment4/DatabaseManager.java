@@ -9,7 +9,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase; 
 import android.database.sqlite.SQLiteOpenHelper; 
   
-public class DatabaseManager extends SQLiteOpenHelper { 
+public class DatabaseManager extends SQLiteOpenHelper {
+    private static DatabaseManager sInstance;
 
 	private static final String DATABASE_NAME = "StudentRecruitment.db";
     private static final int DATABASE_VERSION = 1;
@@ -17,7 +18,15 @@ public class DatabaseManager extends SQLiteOpenHelper {
     private String tables[];
     private String tableCreatorString[]; // SQL statements to create tables
 
-    public DatabaseManager(Context context) { 
+    // Use this instead of the constructor to access the database
+    public static synchronized DatabaseManager getInstance(Context context) {
+        if (sInstance == null) {
+            sInstance = new DatabaseManager(context.getApplicationContext());
+        }
+        return sInstance;
+    }
+
+    private DatabaseManager(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -96,7 +105,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
   
         // return table as a list 
         return table; 
-    } 
+    }
 
     public int updateRecord(ContentValues values, String tableName, String fields[],String record[]) { 
         SQLiteDatabase db = this.getWritableDatabase(); 
@@ -115,4 +124,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 new String[] { id }); 
         db.close(); 
     }
+
+
 } 

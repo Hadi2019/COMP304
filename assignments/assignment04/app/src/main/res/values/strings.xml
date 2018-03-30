@@ -3,6 +3,7 @@
     <string name="main_username">Username:</string>
     <string name="main_password">Password:</string>
     <string name="btnLogin">Log in</string>
+    <string name="btnRegister">Register</string>
     <string name="student">Student</string>
     <string name="admin">Admin</string>
     <string-array name="tables">
