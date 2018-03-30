@@ -69,6 +69,10 @@ public class DatabaseManager extends SQLiteOpenHelper {
         onCreate(db); 
     }
 
+    private String sanitize(String s) {
+        return s.replaceAll("[^\\w_]", "");
+    }
+
     // -- Database operations -- //
     void addRecord(ContentValues values, String tableName, String fields[],String record[]) { 
         SQLiteDatabase db = this.getWritableDatabase(); 
@@ -81,11 +85,11 @@ public class DatabaseManager extends SQLiteOpenHelper {
     }
     
     // Read all records 
-    public List getTable(String tableName) { 
+    public List getTable(String tableName) {
         List table = new ArrayList();
-        String selectQuery = "SELECT  * FROM " + tableName; 
+        String selectQuery = "SELECT  * FROM " + sanitize(tableName);
   
-        SQLiteDatabase db = this.getReadableDatabase(); 
+        SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null); 
         ArrayList row = new ArrayList(); //to store one row
 
@@ -105,6 +109,21 @@ public class DatabaseManager extends SQLiteOpenHelper {
   
         // return table as a list 
         return table; 
+    }
+
+    public String getField(String table, String column, String constraintColumn, String constraintValue) {
+        table = sanitize(table);
+        column = sanitize(column);
+        constraintColumn = sanitize(constraintColumn);
+
+        String selectQuery = String.format("SELECT %s FROM %s WHERE %s=? LIMIT 1", column, table, constraintColumn);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, new String[] {constraintValue});
+
+        if (cursor.moveToFirst()) {
+            return cursor.getString(cursor.getColumnIndex(column));
+        }
     }
 
     public int updateRecord(ContentValues values, String tableName, String fields[],String record[]) { 
