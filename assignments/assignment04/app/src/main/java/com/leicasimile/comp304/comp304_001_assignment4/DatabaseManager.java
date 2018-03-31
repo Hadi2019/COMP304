@@ -102,7 +102,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         }
 
         for (int i = 0; i < programRecords.length; i++) {
-            addRecord("Program", adminRecords[i], db);
+            addRecord("Program", programRecords[i], db);
         }
     }
 
@@ -127,7 +127,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
         }
 
         if (columns.size() != values.length) {
-            throw new InvalidParameterException("Number of columns must be equal to the number of values");
+            throw new InvalidParameterException(String.format("Number of columns must be equal to number of values" +
+                    "(table: %s, columns: %d, values: %d)", table, columns.size(), values.length));
         }
 
         ContentValues cv = new ContentValues();
