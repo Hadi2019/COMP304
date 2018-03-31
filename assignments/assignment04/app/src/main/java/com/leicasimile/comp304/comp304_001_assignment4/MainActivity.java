@@ -64,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         actualPassword = db.getField(table, "password", "username", username);
-
         if (password.equals(actualPassword)) {
             return true;
         }

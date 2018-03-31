@@ -11,6 +11,7 @@ import android.content.Context;
 import android.database.Cursor; 
 import android.database.sqlite.SQLiteDatabase; 
 import android.database.sqlite.SQLiteOpenHelper;
+import android.text.TextUtils;
 import android.util.Log;
 
 public class DatabaseManager extends SQLiteOpenHelper {
@@ -155,10 +156,18 @@ public class DatabaseManager extends SQLiteOpenHelper {
         db.insert(table, null, cv);
     }
 
-    // Read all records 
-    public List getTable(String tableName) {
-        List table = new ArrayList();
-        String selectQuery = "SELECT  * FROM " + sanitize(tableName);
+    public List getRecords(String table, String[] columns) {
+        List records = new ArrayList();
+        List<String> sanitizedColumns = Arrays.asList(columns);
+        for (int i = 0; i < sanitizedColumns.size(); i++) {
+            // Sanitize each column
+            if (sanitizedColumns.get(i).equals("*"))
+                continue;
+            sanitizedColumns.set(i, sanitize(sanitizedColumns.get(i)));
+        }
+
+        String selectQuery = String.format("SELECT %s FROM %s",
+                TextUtils.join(",", sanitizedColumns), table);
   
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null); 
@@ -173,13 +182,12 @@ public class DatabaseManager extends SQLiteOpenHelper {
         			row.add(cursor.getString(i));
         		}
             
-                table.add(row);
+                records.add(row);
                 
             } while (cursor.moveToNext()); 
         } 
-  
-        // return table as a list 
-        return table; 
+
+        return records;
     }
 
     public String getField(String table, String column, String constraintColumn, String constraintValue) {
