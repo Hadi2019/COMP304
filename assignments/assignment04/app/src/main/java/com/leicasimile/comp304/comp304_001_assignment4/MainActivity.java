@@ -9,15 +9,19 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 
 public class MainActivity extends AppCompatActivity {
-    private final String tables[] = getResources().getStringArray(R.array.tables);
-    private final String tableCreatorString[] = getResources().getStringArray(R.array.tableCreator);
-    private final DatabaseManager db = DatabaseManager.getInstance(this);
+    private static String tables[];
+    private static String tableCreatorString[];
+    private DatabaseManager db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        tables = getResources().getStringArray(R.array.tables);
+        tableCreatorString = getResources().getStringArray(R.array.tableCreator);
+
+        db = DatabaseManager.getInstance(this);
         db.dbInitialize(tables, tableCreatorString);
         db.createDatabase(getApplicationContext());
 
@@ -40,8 +44,23 @@ public class MainActivity extends AppCompatActivity {
         EditText editPassword = findViewById(R.id.main_editPassword);
         String username = editUsername.getText().toString();
         String password = editPassword.getText().toString();
+        String table = "";
 
-        
+        RadioGroup rgrpUserType = findViewById(R.id.main_rgrpUserType);
+
+        switch (rgrpUserType.getCheckedRadioButtonId()) {
+            case R.id.main_radStudent:
+                table = "Student";
+                break;
+            case R.id.main_radAdmin:
+                table = "Admin";
+                break;
+        }
+
+        if (password == db.getField(table, "password", "username", username)) {
+            return true;
+        }
+
         return false;
     }
 

@@ -1,14 +1,17 @@
 package com.leicasimile.comp304.comp304_001_assignment4;
 
-import java.util.ArrayList; 
-import java.util.List; 
+import java.security.InvalidParameterException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
   
 import android.content.ContentValues; 
 import android.content.Context; 
 import android.database.Cursor; 
 import android.database.sqlite.SQLiteDatabase; 
-import android.database.sqlite.SQLiteOpenHelper; 
-  
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
 public class DatabaseManager extends SQLiteOpenHelper {
     private static DatabaseManager sInstance;
 
@@ -40,11 +43,13 @@ public class DatabaseManager extends SQLiteOpenHelper {
     // Create tables 
     @Override
     public void onCreate(SQLiteDatabase db) {
-    	for (int i = 0; i < tables.length; i++)
-    		db.execSQL("DROP TABLE IF EXISTS " + tables[i]);
+    	for (int i = 0; i < tables.length; i++) {
+            db.execSQL("DROP TABLE IF EXISTS " + tables[i]);
+        }
 
-    	for (int i = 0; i < tableCreatorString.length; i++)
-    		db.execSQL(tableCreatorString[i]);
+    	for (int i = 0; i < tableCreatorString.length; i++) {
+            db.execSQL(tableCreatorString[i]);
+        }
     } 
 
     public void createDatabase(Context context)
@@ -124,6 +129,27 @@ public class DatabaseManager extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             return cursor.getString(cursor.getColumnIndex(column));
         }
+
+        return "";
+    }
+
+    public void addRecord(String table, String[] columns, String[] values) {
+        if (columns.length != values.length) {
+            throw new InvalidParameterException("Number of columns must be equal to the number of values");
+        }
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        for (int i = 0; i < columns.length; i++) {
+            cv.put(columns[i], values[i]);
+        }
+
+        try {
+            db.insert(table, null, cv);
+        } finally {
+            db.close();
+        }
     }
 
     public int updateRecord(ContentValues values, String tableName, String fields[],String record[]) { 
@@ -143,6 +169,4 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 new String[] { id }); 
         db.close(); 
     }
-
-
 } 
