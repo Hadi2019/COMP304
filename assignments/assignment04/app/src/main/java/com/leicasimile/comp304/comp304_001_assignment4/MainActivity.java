@@ -3,9 +3,11 @@ package com.leicasimile.comp304.comp304_001_assignment4;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
         db = DatabaseManager.getInstance(this);
         db.dbInitialize(tables, tableCreatorString);
         db.createDatabase(getApplicationContext());
+
+        RadioButton radStudent = findViewById(R.id.main_radStudent);
+        radStudent.setChecked(true);
 
         // Event-handlers
         Button btnLogin = findViewById(R.id.main_btnLogin);
@@ -44,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         EditText editPassword = findViewById(R.id.main_editPassword);
         String username = editUsername.getText().toString();
         String password = editPassword.getText().toString();
+        String actualPassword;
         String table = "";
 
         RadioGroup rgrpUserType = findViewById(R.id.main_rgrpUserType);
@@ -57,7 +63,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
 
-        if (password == db.getField(table, "password", "username", username)) {
+        actualPassword = db.getField(table, "password", "username", username);
+        Log.d("", "isValidLogin: " + password + actualPassword);
+        if (password == actualPassword) {
             return true;
         }
 
