@@ -2,9 +2,10 @@ package com.leicasimile.comp304.comp304_001_assignment4;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-  
+
 import android.content.ContentValues; 
 import android.content.Context; 
 import android.database.Cursor; 
@@ -34,8 +35,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
     }
 
     // Initialize database table names and DDL statements
-    public void dbInitialize(String[] tables, String tableCreatorString[])
-    {
+    public void dbInitialize(String[] tables, String tableCreatorString[]) {
   	    this.tables = tables;
   	    this.tableCreatorString = tableCreatorString;
     }
@@ -50,6 +50,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
     	for (int i = 0; i < tableCreatorString.length; i++) {
             db.execSQL(tableCreatorString[i]);
         }
+        insertInitialRecords(db);
     } 
 
     public void createDatabase(Context context)
@@ -79,16 +80,80 @@ public class DatabaseManager extends SQLiteOpenHelper {
     }
 
     // -- Database operations -- //
-    void addRecord(ContentValues values, String tableName, String fields[],String record[]) { 
-        SQLiteDatabase db = this.getWritableDatabase(); 
-  
-        for (int i = 1; i < record.length; i++)
-        	values.put(fields[i], record[i]);
+    private void insertInitialRecords(SQLiteDatabase db) {
+        String[][] studentRecords = {
+                {"beep", "boop", "Beep", "Boop", "40 Street St", "Toronto", "M5J 2M3"}
+        };
+        String[][] adminRecords = {
+                {"boop", "beep", "Boop", "Beep"}
+        };
+        Object[][] programRecords = {
+                {"3409", "Software Engineering Technology", 2935.50, 3, 6},
+                {"6409", "Art and Design Fundamentals", 2935.50, 1, 2},
+                {"6423", "Animation 3D", 6436.50, 2, 4}
+        };
 
-        db.insert(tableName, null, values); 
-        db.close();
+        for (int i = 0; i < studentRecords.length; i++) {
+            addRecord("Student", studentRecords[i], db);
+        }
+
+        for (int i = 0; i < adminRecords.length; i++) {
+            addRecord("Admin", adminRecords[i], db);
+        }
+
+        for (int i = 0; i < programRecords.length; i++) {
+            addRecord("Program", adminRecords[i], db);
+        }
     }
-    
+
+    private void addRecord(String table, Object[] values, SQLiteDatabase db) {
+        List<String> columns;
+        switch (table) {
+            case "Student":
+                columns = Arrays.asList("username", "password", "firstname", "lastname", "address", "city", "postalCode");
+                break;
+            case "Admin":
+                columns = Arrays.asList("username", "password", "firstname", "lastname");
+                break;
+            case "Program":
+                columns = Arrays.asList("programCode", "programName", "tuitionFee", "duration", "semester");
+                break;
+            case "Payment":
+                columns = Arrays.asList("studentId", "programCode", "totalAmount", "amountPaid",
+                        "balance", "paymentDate", "status");
+                break;
+            default:
+                throw new InvalidParameterException("Invalid table name: " + table);
+        }
+
+        if (columns.size() != values.length) {
+            throw new InvalidParameterException("Number of columns must be equal to the number of values");
+        }
+
+        ContentValues cv = new ContentValues();
+
+        for (int i = 0; i < columns.size(); i++) {
+            String column = columns.get(i);
+            switch (column) {
+                case "tuitionFee":
+                case "totalAmount":
+                case "amountPaid":
+                case "balance":
+                    cv.put(column, (double)values[i]);
+                    break;
+                case "duration":
+                case "semester":
+                case "paymentDate":
+                    cv.put(column, (int)values[i]);
+                    break;
+                default:
+                    cv.put(column, values[i].toString());
+                    break;
+            }
+        }
+        db.insert(table, null, cv);
+    }
+
     // Read all records 
     public List getTable(String tableName) {
         List table = new ArrayList();
@@ -133,19 +198,53 @@ public class DatabaseManager extends SQLiteOpenHelper {
         return "";
     }
 
-    public void addRecord(String table, String[] columns, String[] values) {
-        if (columns.length != values.length) {
+    public void addRecord(String table, Object[] values) {
+        List<String> columns;
+        switch (table) {
+            case "Student":
+                columns = Arrays.asList("username", "password", "firstname", "lastname", "address", "city", "postalCode");
+                break;
+            case "Admin":
+                columns = Arrays.asList("username", "password", "firstname", "lastname");
+                break;
+            case "Program":
+                columns = Arrays.asList("programCode", "programName", "tuitionFee", "duration", "semester");
+                break;
+            case "Payment":
+                columns = Arrays.asList("studentId", "programCode", "totalAmount", "amountPaid",
+                        "balance", "paymentDate", "status");
+                break;
+            default:
+                throw new InvalidParameterException("Invalid table name: " + table);
+        }
+
+        if (columns.size() != values.length) {
             throw new InvalidParameterException("Number of columns must be equal to the number of values");
         }
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        for (int i = 0; i < columns.length; i++) {
-            cv.put(columns[i], values[i]);
-        }
-
         try {
+            for (int i = 0; i < columns.size(); i++) {
+                String column = columns.get(i);
+                switch (column) {
+                    case "tuitionFee":
+                    case "totalAmount":
+                    case "amountPaid":
+                    case "balance":
+                        cv.put(column, (double)values[i]);
+                        break;
+                    case "duration":
+                    case "semester":
+                    case "paymentDate":
+                        cv.put(column, (int)values[i]);
+                        break;
+                    default:
+                        cv.put(column, values[i].toString());
+                        break;
+                }
+            }
             db.insert(table, null, cv);
         } finally {
             db.close();
