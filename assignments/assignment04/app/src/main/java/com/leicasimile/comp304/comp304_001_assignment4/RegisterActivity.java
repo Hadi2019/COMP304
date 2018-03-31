@@ -9,13 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RegisterActivity extends AppCompatActivity {
-    private Spinner spnPrograms = findViewById(R.id.register_spnPrograms);
+    private Spinner spnPrograms;
     private List<String> programs = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        spnPrograms = findViewById(R.id.register_spnPrograms);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_spinner_item, programs);
