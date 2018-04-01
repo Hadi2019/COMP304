@@ -74,15 +74,27 @@ public class MainActivity extends AppCompatActivity {
     private void displayNextActivity() {
         Intent i = null;
         RadioGroup rgrpUserType = findViewById(R.id.main_rgrpUserType);
+        EditText editUsername = findViewById(R.id.main_editUsername);
+        String table;
+        String column;
 
         switch (rgrpUserType.getCheckedRadioButtonId()) {
             case R.id.main_radStudent:
                 i = new Intent(this, RegisterActivity.class);
+                table = "Student";
+                column = "studentId";
                 break;
             case R.id.main_radAdmin:
                 i = new Intent(this, RegistrationListActivity.class);
+                table = "Admin";
+                column = "employeeId";
                 break;
+            default:
+                return;
         }
+
+        // Pass username to next activity
+        i.putExtra("username", editUsername.getText().toString());
         startActivity(i);
     }
 }

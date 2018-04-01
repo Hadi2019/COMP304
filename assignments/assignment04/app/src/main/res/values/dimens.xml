@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="activity_margin">16dp</dimen>
+    <dimen name="register_marginTop">20dp</dimen>
+    <dimen name="register_marginHorizontal">40dp</dimen>
+    <dimen name="register_nameSize">14pt</dimen>
 </resources>

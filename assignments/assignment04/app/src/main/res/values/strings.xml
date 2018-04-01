@@ -6,6 +6,7 @@
     <string name="btnRegister">Register</string>
     <string name="student">Student</string>
     <string name="admin">Admin</string>
+    <string name="register_txtPrograms">Program:</string>
     <string-array name="tables">
         <item>Student</item>
         <item>Admin</item>

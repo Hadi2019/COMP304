@@ -4,14 +4,76 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/activity_margin"
+    android:layout_marginTop="@dimen/register_marginTop"
+    android:layout_marginBottom="@dimen/register_marginTop"
+    android:layout_marginLeft="@dimen/register_marginHorizontal"
+    android:layout_marginRight="@dimen/register_marginHorizontal"
     android:orientation="vertical"
     tools:context="com.leicasimile.comp304.comp304_001_assignment4.RegisterActivity">
 
-    <Spinner
-        android:id="@+id/register_spnPrograms"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/register_txtName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/register_nameSize"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/register_marginTop">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/register_txtPrograms" />
+        <Spinner
+            android:id="@+id/register_spnPrograms"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Card number: " />
+        <EditText
+            android:id="@+id/register_editCardNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="19" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CVV: " />
+        <EditText
+            android:id="@+id/register_editCvv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType="number"
+            android:maxLength="3" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Expiry date: " />
+        <EditText
+            android:id="@+id/register_editExpiry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType="date"
+            android:maxLength="4" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/register_btnRegister"
