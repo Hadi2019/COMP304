@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +19,8 @@ import java.util.List;
 public class RegisterActivity extends AppCompatActivity {
     private Spinner spnPrograms;
     private DatabaseManager db;
+    private String username;
+    private String program;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +29,25 @@ public class RegisterActivity extends AppCompatActivity {
 
         db = DatabaseManager.getInstance(this);
 
+        spnPrograms = findViewById(R.id.register_spnPrograms);
         setWelcomeMessage();
         setSpinnerValues();
 
         // Event-handlers
+        final Spinner spnPrograms = findViewById(R.id.register_spnPrograms);
+        spnPrograms.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                program = spnPrograms.getSelectedItem().toString();
+                displayTuition();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         Button btnRegister = findViewById(R.id.register_btnRegister);
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,7 +60,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void setWelcomeMessage() {
         // Set welcome message for student
         TextView txtName = findViewById(R.id.register_txtName);
-        String username = getSharedPreferences("UserRegistration", MODE_PRIVATE)
+        username = getSharedPreferences("UserRegistration", MODE_PRIVATE)
                 .getString("username", "");
         String firstname = db.getField("Student", "firstname",
                 "username", username);
@@ -58,13 +78,19 @@ public class RegisterActivity extends AppCompatActivity {
             programs[i] = ((ArrayList)programRecords.get(i)).get(i).toString();
         }
 
-        spnPrograms = findViewById(R.id.register_spnPrograms);
         ArrayAdapter<String> adapter;
 
         adapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_spinner_item, programs);
         spnPrograms.setAdapter(adapter);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    }
+
+    private void displayTuition() {
+        double tuitionFee = Double.parseDouble(db.getField("Program", "tuitionFee",
+                "programName", program));
+        TextView txtTuition = findViewById(R.id.register_txtTuition);
+        txtTuition.setText(String.format("Tuition: %s", Formatter.getCurrency(tuitionFee)));
     }
 
     private boolean validateForm() {
@@ -86,10 +112,22 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void register() {
         if (validateForm()) {
-            Spinner spnPrograms = findViewById(R.id.register_spnPrograms);
+            String programCode = db.getField("Program", "programCode",
+                    "programName", program);
+            double totalAmount = Double.parseDouble(db.getField("Program", "tuitionFee",
+                    "programName", program));
+            String studentId = db.getField("Student", "studentId",
+                    "username", username);
+
+            // Store payment in database
+            /* "studentId", "programCode", "totalAmount", "amountPaid",
+                        "balance", "paymentDate", "status" */
+
+
+            // Go to registration info activity
             Intent i = new Intent(this, RegistrationInfoActivity.class);
 
-            i.putExtra("program", spnPrograms.getSelectedItem().toString());
+            i.putExtra("program", program);
             startActivity(i);
         }
     }
