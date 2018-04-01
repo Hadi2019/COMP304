@@ -14,4 +14,8 @@ public class Formatter {
         NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(Locale.US);
         return currencyFormat.format(amount);
     }
+
+    public static String getPartialCardNo(String cardNo) {
+        return String.format("***%s", cardNo.substring(cardNo.length() - 4, cardNo.length()));
+    }
 }
