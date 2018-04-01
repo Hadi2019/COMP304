@@ -3,6 +3,8 @@ package com.leicasimile.comp304.comp304_001_assignment4;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,6 +23,7 @@ public class RegisterActivity extends AppCompatActivity {
     private DatabaseManager db;
     private String username;
     private String program;
+    private double tuitionFee;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +42,54 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 program = spnPrograms.getSelectedItem().toString();
+                tuitionFee = Double.parseDouble(db.getField("Program", "tuitionFee",
+                        "programName", program));
                 displayTuition();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        final EditText editPayment = findViewById(R.id.register_editPayment);
+        editPayment.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String paymentString = editPayment.getText().toString();
+                if (paymentString.isEmpty()) {
+                    editPayment.setText("0");
+                    editPayment.setSelection(1);
+                    return;
+                }
+
+                String[] paymentSplit = paymentString.split("\\.");
+                double payment = Double.parseDouble(paymentString);
+
+                if (payment > tuitionFee) {
+                    // Payment cannot exceed tuition fee
+                    editPayment.setText(String.format("%.2f", tuitionFee));
+                } else if (paymentSplit.length > 1) {
+                    // Limit to two decimal places
+                    String paymentDecimal = paymentSplit[1];
+                    if (paymentDecimal.length() > 2 ) {
+                        editPayment.setText(String.format("%s.%s",
+                                paymentSplit[0], paymentDecimal.substring(0, 2)));
+                    }
+                } else {
+                    return;
+                }
+                editPayment.setSelection(editPayment.getText().length());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
 
             }
         });
@@ -87,8 +133,6 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void displayTuition() {
-        double tuitionFee = Double.parseDouble(db.getField("Program", "tuitionFee",
-                "programName", program));
         TextView txtTuition = findViewById(R.id.register_txtTuition);
         txtTuition.setText(String.format("Tuition: %s", Formatter.getCurrency(tuitionFee)));
     }
