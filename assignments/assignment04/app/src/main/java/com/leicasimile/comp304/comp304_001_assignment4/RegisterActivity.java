@@ -19,12 +19,19 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         db = DatabaseManager.getInstance(this);
-        listPrograms = db.getRecords("Program", new String[]{"programName"});
+        List programRecords = db.getRecords("Program", new String[]{"programName"});
+        String[] programs = new String[programRecords.size()];
+
+        for (int i = 0; i < programRecords.size(); i++) {
+            programs[i] = ((ArrayList)programRecords.get(i)).get(i).toString();
+        }
 
         spnPrograms = findViewById(R.id.register_spnPrograms);
+        ArrayAdapter<String> adapter;
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_item, listPrograms);
+        adapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, programs);
         spnPrograms.setAdapter(adapter);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     }
 }

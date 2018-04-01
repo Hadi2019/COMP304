@@ -156,7 +156,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         db.insert(table, null, cv);
     }
 
-    public List getRecords(String table, String[] columns) {
+    public List<ArrayList> getRecords(String table, String[] columns) {
         List records = new ArrayList();
         List<String> sanitizedColumns = Arrays.asList(columns);
         for (int i = 0; i < sanitizedColumns.size(); i++) {
