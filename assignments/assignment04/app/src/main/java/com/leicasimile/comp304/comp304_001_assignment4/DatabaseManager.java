@@ -54,7 +54,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         insertInitialRecords(db);
     } 
 
-    public void createDatabase(Context context)
+    private void createDatabase(Context context)
     {
     	SQLiteDatabase mDatabase;
     	mDatabase = context.openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE,
@@ -121,7 +121,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 break;
             case "Payment":
                 columns = Arrays.asList("studentId", "programCode", "totalAmount", "amountPaid",
-                        "balance", "paymentDate", "status");
+                        "balance", "paymentDate", "cardNo", "status");
                 break;
             default:
                 throw new InvalidParameterException("Invalid table name: " + table);
@@ -170,22 +170,27 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 TextUtils.join(",", sanitizedColumns), table);
   
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null); 
-        ArrayList row = new ArrayList(); //to store one row
+        Cursor cursor = db.rawQuery(selectQuery, null);
 
-        //scroll over rows and store each row in an array list object
-        if (cursor.moveToFirst()) 
-        { 
-        	do 
-        	{
-        		for (int i = 0; i < cursor.getColumnCount(); i++) {
-        			row.add(cursor.getString(i));
-        		}
-            
-                records.add(row);
-                
-            } while (cursor.moveToNext()); 
-        } 
+        try {
+            ArrayList row = new ArrayList(); //to store one row
+
+            //scroll over rows and store each row in an array list object
+            if (cursor.moveToFirst())
+            {
+                do
+                {
+                    for (int i = 0; i < cursor.getColumnCount(); i++) {
+                        row.add(cursor.getString(i));
+                    }
+
+                    records.add(row);
+
+                } while (cursor.moveToNext());
+            }
+        } finally {
+            cursor.close();
+        }
 
         return records;
     }
@@ -200,8 +205,12 @@ public class DatabaseManager extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, new String[] {constraintValue});
 
-        if (cursor.moveToFirst()) {
-            return cursor.getString(cursor.getColumnIndex(column));
+        try {
+            if (cursor.moveToFirst()) {
+                return cursor.getString(cursor.getColumnIndex(column));
+            }
+        } finally {
+            cursor.close();
         }
 
         return "";
@@ -272,9 +281,13 @@ public class DatabaseManager extends SQLiteOpenHelper {
     } 
 
     public void deleteRecord(String tableName, String idName, String id) { 
-        SQLiteDatabase db = this.getWritableDatabase(); 
-        db.delete(tableName, idName + " = ?", 
-                new String[] { id }); 
-        db.close(); 
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        try {
+            db.delete(tableName, idName + " = ?",
+                    new String[] { id });
+        } finally {
+            db.close();
+        }
     }
 } 

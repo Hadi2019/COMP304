@@ -165,7 +165,8 @@ public class RegisterActivity extends AppCompatActivity {
 
             // Store payment in database
             /* "studentId", "programCode", "totalAmount", "amountPaid",
-                        "balance", "paymentDate", "status" */
+                        "balance", "paymentDate", "cardNo", "status" */
+
 
 
             // Go to registration info activity

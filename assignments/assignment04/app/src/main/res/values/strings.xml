@@ -27,7 +27,7 @@
         <item>CREATE TABLE Payment (paymentId INTEGER PRIMARY KEY AUTOINCREMENT,
             studentId INTEGER, programCode TEXT,
             totalAmount NUMERIC, amountPaid NUMERIC, balance NUMERIC,
-            paymentDate INTEGER, status TEXT);
+            paymentDate INTEGER, cardNo TEXT, status TEXT);
         </item>
     </string-array>
 </resources>
