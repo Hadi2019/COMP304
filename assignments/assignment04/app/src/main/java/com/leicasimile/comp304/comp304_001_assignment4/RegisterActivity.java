@@ -15,7 +15,6 @@ import java.util.List;
 
 public class RegisterActivity extends AppCompatActivity {
     private Spinner spnPrograms;
-    private List<String> listPrograms = new ArrayList<>();
     private DatabaseManager db;
 
     @Override
@@ -24,9 +23,21 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         db = DatabaseManager.getInstance(this);
-        List programRecords = db.getRecords("Program", new String[]{"programName"});
-        String[] programs = new String[programRecords.size()];
 
+        setWelcomeMessage();
+        setSpinnerValues();
+
+        // Event-handlers
+        Button btnRegister = findViewById(R.id.register_btnRegister);
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                register();
+            }
+        });
+    }
+
+    private void setWelcomeMessage() {
         // Set welcome message for student
         TextView txtName = findViewById(R.id.register_txtName);
         String username = getSharedPreferences("UserRegistration", MODE_PRIVATE)
@@ -36,8 +47,13 @@ public class RegisterActivity extends AppCompatActivity {
         String lastname = db.getField("Student", "lastname",
                 "username", username);
         txtName.setText(String.format("Hi, %s %s", firstname, lastname));
+    }
 
+    private void setSpinnerValues() {
         // Populate spinner with programs
+        List programRecords = db.getRecords("Program", new String[]{"programName"});
+        String[] programs = new String[programRecords.size()];
+
         for (int i = 0; i < programRecords.size(); i++) {
             programs[i] = ((ArrayList)programRecords.get(i)).get(i).toString();
         }
@@ -49,15 +65,6 @@ public class RegisterActivity extends AppCompatActivity {
                 this, android.R.layout.simple_spinner_item, programs);
         spnPrograms.setAdapter(adapter);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // Event-handlers
-        Button btnRegister = findViewById(R.id.register_btnRegister);
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                register();
-            }
-        });
     }
 
     private boolean validateForm() {
