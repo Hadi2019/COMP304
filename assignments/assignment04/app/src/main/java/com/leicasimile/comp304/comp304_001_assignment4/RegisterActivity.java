@@ -1,8 +1,11 @@
 package com.leicasimile.comp304.comp304_001_assignment4;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -26,10 +29,12 @@ public class RegisterActivity extends AppCompatActivity {
 
         // Set welcome message for student
         TextView txtName = findViewById(R.id.register_txtName);
+        String username = getSharedPreferences("UserRegistration", MODE_PRIVATE)
+                .getString("username", "");
         String firstname = db.getField("Student", "firstname",
-                "username", getIntent().getStringExtra("username"));
+                "username", username);
         String lastname = db.getField("Student", "lastname",
-                "username", getIntent().getStringExtra("username"));
+                "username", username);
         txtName.setText(String.format("Hi, %s %s", firstname, lastname));
 
         // Populate spinner with programs
@@ -46,6 +51,13 @@ public class RegisterActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         // Event-handlers
+        Button btnRegister = findViewById(R.id.register_btnRegister);
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                register();
+            }
+        });
     }
 
     private boolean validateForm() {
@@ -63,5 +75,15 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         return isValid;
+    }
+
+    private void register() {
+        if (validateForm()) {
+            Spinner spnPrograms = findViewById(R.id.register_spnPrograms);
+            Intent i = new Intent(this, RegistrationInfoActivity.class);
+
+            i.putExtra("program", spnPrograms.getSelectedItem().toString());
+            startActivity(i);
+        }
     }
 }

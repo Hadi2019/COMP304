@@ -1,6 +1,7 @@
 package com.leicasimile.comp304.comp304_001_assignment4;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -75,26 +76,24 @@ public class MainActivity extends AppCompatActivity {
         Intent i = null;
         RadioGroup rgrpUserType = findViewById(R.id.main_rgrpUserType);
         EditText editUsername = findViewById(R.id.main_editUsername);
-        String table;
-        String column;
+
+        SharedPreferences myPreference =
+                getSharedPreferences("UserRegistration", 0);
+        SharedPreferences.Editor prefEditor = myPreference.edit();
+        prefEditor.putString("username", editUsername.getText().toString());
+        prefEditor.apply();
 
         switch (rgrpUserType.getCheckedRadioButtonId()) {
             case R.id.main_radStudent:
                 i = new Intent(this, RegisterActivity.class);
-                table = "Student";
-                column = "studentId";
                 break;
             case R.id.main_radAdmin:
                 i = new Intent(this, RegistrationListActivity.class);
-                table = "Admin";
-                column = "employeeId";
                 break;
             default:
                 return;
         }
 
-        // Pass username to next activity
-        i.putExtra("username", editUsername.getText().toString());
         startActivity(i);
     }
 }
