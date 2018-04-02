@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
         db = DatabaseManager.getInstance(this);
         db.dbInitialize(tables, tableCreatorString);
-        db.createDatabase(getApplicationContext());
 
         RadioButton radStudent = findViewById(R.id.main_radStudent);
         radStudent.setChecked(true);

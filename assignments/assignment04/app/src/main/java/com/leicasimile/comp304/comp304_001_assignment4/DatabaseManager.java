@@ -230,7 +230,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 break;
             case "Payment":
                 columns = Arrays.asList("studentId", "programCode", "totalAmount", "amountPaid",
-                        "balance", "paymentDate", "status");
+                        "balance", "paymentDate", "cardNo", "status");
                 break;
             default:
                 throw new InvalidParameterException("Invalid table name: " + table);
@@ -255,8 +255,10 @@ public class DatabaseManager extends SQLiteOpenHelper {
                         break;
                     case "duration":
                     case "semester":
-                    case "paymentDate":
                         cv.put(column, (int)values[i]);
+                        break;
+                    case "paymentDate":
+                        cv.put(column, (long)values[i]);
                         break;
                     default:
                         cv.put(column, values[i].toString());

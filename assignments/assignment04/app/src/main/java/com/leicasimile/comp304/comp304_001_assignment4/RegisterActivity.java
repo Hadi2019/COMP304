@@ -16,6 +16,7 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -156,18 +157,23 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void register() {
         if (validateForm()) {
-            String programCode = db.getField("Program", "programCode",
-                    "programName", program);
-            double totalAmount = Double.parseDouble(db.getField("Program", "tuitionFee",
-                    "programName", program));
+            EditText editPayment = findViewById(R.id.register_editPayment);
+            EditText editCardNo = findViewById(R.id.register_editCardNo);
+
             String studentId = db.getField("Student", "studentId",
                     "username", username);
+            String programCode = db.getField("Program", "programCode",
+                    "programName", program);
+            double amountPaid = Double.parseDouble(editPayment.getText().toString());
+            String cardNo = editCardNo.getText().toString();
 
             // Store payment in database
             /* "studentId", "programCode", "totalAmount", "amountPaid",
                         "balance", "paymentDate", "cardNo", "status" */
-
-
+            db.addRecord("Payment", new Object[] {
+                    studentId, programCode, tuitionFee, amountPaid, tuitionFee - amountPaid,
+                    Calendar.getInstance().getTimeInMillis(), cardNo, "In-Process"
+            });
 
             // Go to registration info activity
             Intent i = new Intent(this, RegistrationInfoActivity.class);
