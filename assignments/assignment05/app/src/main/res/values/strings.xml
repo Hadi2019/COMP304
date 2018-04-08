@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">AngelicaCatalan_COMP304_Lab_Assign5</string>
+    <string name="app_name">College Locations</string>
+    <string name="google_api_key">AIzaSyCjW3LIyGfSba8cTenJ0u0vQcr259Va0yM</string>
     <string name="main_txtPrompt">Select a college</string>
     <string-array name="colleges">
         <item>Centennial</item>
