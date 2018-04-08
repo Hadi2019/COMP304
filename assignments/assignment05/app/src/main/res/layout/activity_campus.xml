@@ -6,4 +6,9 @@
     android:layout_height="match_parent"
     tools:context="com.leicasimile.comp304.angelicacatalan_comp304_lab_assign5.CampusActivity">
 
+    <ListView
+        android:id="@+id/android:list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

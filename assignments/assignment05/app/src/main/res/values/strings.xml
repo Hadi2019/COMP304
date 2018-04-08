@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">College Locations</string>
-    <string name="google_api_key">AIzaSyCjW3LIyGfSba8cTenJ0u0vQcr259Va0yM</string>
     <string name="main_txtPrompt">Select a college</string>
+    <string name="campus_txtPrompt">Select a campus</string>
     <string-array name="colleges">
         <item>Centennial</item>
         <item>George Brown</item>
@@ -47,4 +47,5 @@
         <item>Progress</item>
         <item>Story Arts Centre</item>
     </string-array>
+    <string name="title_activity_map">Map</string>
 </resources>
