@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">AngelicaCatalan_COMP304_Lab_Assign5</string>
+    <string name="main_txtPrompt">Select a college</string>
     <string-array name="colleges">
         <item>Centennial</item>
         <item>George Brown</item>
