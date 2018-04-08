@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">AngelicaCatalan_COMP304_Lab_Assign5</string>
+    <string-array name="colleges">
+        <item>Centennial</item>
+        <item>George Brown</item>
+        <item>Humber</item>
+        <item>Seneca</item>
+        <item>Sheridan</item>
+    </string-array>
+    <string-array name="campuses_centennial">
+        <item>Ashtonbee</item>
+        <item>Morningside</item>
+        <item>Pickering</item>
+        <item>Progress</item>
+        <item>Story Arts Centre</item>
+    </string-array>
+    <string-array name="campuses_georgeBrown">
+        <item>Casa Loma</item>
+        <item>Ryerson University</item>
+        <item>School of Performing Arts</item>
+        <item>St. James</item>
+        <item>Waterfront</item>
+    </string-array>
+    <string-array name="campuses_humber">
+        <item>Lakeshore</item>
+        <item>North</item>
+        <item>Orangeville</item>
+    </string-array>
+    <string-array name="campuses_seneca">
+        <item>Jane</item>
+        <item>King</item>
+        <item>Markham</item>
+        <item>Newmarket</item>
+        <item>Newnham</item>
+        <item>Peterborough Aviation</item>
+        <item>Scarborough</item>
+        <item>Seneca@York</item>
+        <item>Vaughan</item>
+        <item>Yorkgate</item>
+    </string-array>
+    <string-array name="campuses_sheridan">
+        <item>Davis</item>
+        <item>Hazel McCallion</item>
+        <item>Trafalgar</item>
+        <item>Progress</item>
+        <item>Story Arts Centre</item>
+    </string-array>
+</resources>
